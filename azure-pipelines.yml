@@ -55,5 +55,5 @@ stages:
           inputs:
             sshEndpoint: 'devvmc'
             runOptions: 'commands'
-            commands: 'cp -r /tmp/build/* /var/www/html'
+            commands: 'cp -r /tmp/* /var/www/html'
             readyTimeout: '20000'
