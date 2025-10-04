@@ -10,11 +10,13 @@ stages:
       - job: npm_install
         steps:
         - task: Npm@1
+          displayName: npm_install
           inputs:
             command: 'install'
             workingDir: 'System.DefaultWorkingDirectory'
           
         - task: Npm@1
+          displayName: npm_build
           inputs:
             command: 'custom'
             workingDir: 'System.DefaultWorkingDirectory'
@@ -30,6 +32,7 @@ stages:
       - job: download_artifacts
         steps:
         - task: DownloadBuildArtifacts@1
+          displayName: dowload_artifacts
           inputs:
             buildType: 'current'
             downloadType: 'single'
