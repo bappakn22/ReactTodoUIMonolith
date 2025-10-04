@@ -41,14 +41,16 @@ stages:
             cleanDestinationFolder: true
 
         - task: CopyFilesOverSSH@0
+          displayName: copy_artifatcs
           inputs:
             sshEndpoint: 'devvmc'
-            sourceFolder: '$(System.ArtifactsDirectory)'
+            sourceFolder: '$(System.ArtifactsDirectory)/todo_my_deploy'
             contents: '**'
             targetFolder: '/tmp'
             readyTimeout: '20000'
 
         - task: SSH@0
+          displayName: copy to tergate folder
           inputs:
             sshEndpoint: 'devvmc'
             runOptions: 'commands'
