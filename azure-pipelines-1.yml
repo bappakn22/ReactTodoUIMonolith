@@ -44,7 +44,7 @@ stages:
           displayName: copy_artifatcs
           inputs:
             sshEndpoint: 'devvmc'
-            sourceFolder: '$(System.ArtifactsDirectory)/todo_my_deploy'
+            sourceFolder: '$(System.ArtifactsDirectory)'
             contents: '**'
             targetFolder: '/tmp'
             readyTimeout: '20000'
