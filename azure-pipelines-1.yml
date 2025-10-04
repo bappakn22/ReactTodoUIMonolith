@@ -13,17 +13,17 @@ stages:
           displayName: npm_install
           inputs:
             command: 'install'
-            workingDir: 'System.DefaultWorkingDirectory'
+            workingDir: '$(System.DefaultWorkingDirectory)'
           
         - task: Npm@1
           displayName: npm_build
           inputs:
             command: 'custom'
-            workingDir: 'System.DefaultWorkingDirectory'
+            workingDir: '$(System.DefaultWorkingDirectory)'
             customCommand: 'build'
         - task: PublishPipelineArtifact@1
           inputs:
-            targetPath: 'System.DefaultWorkingDirectory/build'
+            targetPath: '$(System.DefaultWorkingDirectory)/build'
             artifact: 'todo_my_deploy'
             publishLocation: 'pipeline'
 
