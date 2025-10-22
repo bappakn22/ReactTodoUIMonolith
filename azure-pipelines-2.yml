@@ -37,6 +37,9 @@ stages:
             publishLocation: 'pipeline'
 
   - stage: deploy
+
+    pool: jumpagent
+
     jobs:
       - job: deploy
         steps:
@@ -48,13 +51,13 @@ stages:
             downloadPath: '$(System.ArtifactsDirectory)'
             cleanDestinationFolder: true
 
-        - task: CopyFilesOverSSH@0
-          inputs:
-            sshEndpoint: 'jumpsvc'
-            sourceFolder: '$(System.ArtifactsDirectory)'
-            contents: '**'
-            targetFolder: '/tmp'
-            readyTimeout: '20000'
+        # - task: CopyFilesOverSSH@0
+        #   inputs:
+        #     sshEndpoint: 'jumpsvc'
+        #     sourceFolder: '$(System.ArtifactsDirectory)'
+        #     contents: '**'
+        #     targetFolder: '/tmp'
+        #     readyTimeout: '20000'
         
         # - task: SSH@0
         #   inputs:
