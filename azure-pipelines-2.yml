@@ -76,9 +76,20 @@ stages:
           inputs:
             sshEndpoint: 'jumpsvc'
             runOptions: 'commands'
-            commands: |
-              scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.4:/tmp
-              
-              sudo cp -r /tmp/* /var/www/html
+            commands: 'scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.4:/tmp'
+            readyTimeout: '20000'
+
+        - task: SSH@0
+          inputs:
+            sshEndpoint: 'jumpsvc'
+            runOptions: 'commands'
+            commands: 'ls /tmp'
+            readyTimeout: '20000'
+
+        - task: SSH@0
+          inputs:
+            sshEndpoint: 'jumpsvc'
+            runOptions: 'commands'
+            commands: 'sudo cp -r /tmp/* /var/www/html'
             readyTimeout: '20000'
               
