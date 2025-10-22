@@ -3,9 +3,12 @@ trigger: none
 
 
 pool: 
- name: jumpagent
- demands:
-   - agent.name -equals jumpvmagent
+ vmImage: ubuntu-latest
+
+
+#  name: jumpagent
+#  demands:
+#    - agent.name -equals jumpvmagent
   
 
 stages:
@@ -13,12 +16,7 @@ stages:
     jobs:
       - job: nodejsinstall
         steps:
-        - task: NodeTool@0
-          inputs:
-            versionSource: 'spec'
-            versionSpec: '6.x'
-            checkLatest: true
-        
+           
         - task: Npm@1
           inputs:
             command: 'install'
