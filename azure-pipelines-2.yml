@@ -67,16 +67,7 @@ stages:
             sshEndpoint: 'jumpsvc'
             runOptions: 'commands'
             commands: |
-              echo "Starting deployment..."
-              TARGET_VMS=("10.0.1.4" "10.0.1.5")
-              SRC="/tmp/*"
-              DEST="/var/www/html"
-
-              for VM in "${TARGET_VMS[@]}"; do
-                echo "Deploying to $VM ..."
-                ssh devopsadmin@$VM "sudo cp -r $SRC $DEST"
-                echo "Deployment to $VM completed!"
-              done
-
-              echo "All deployments completed!"
+               devopsadmin@10.0.1.4 "sudo cp -r /tmp/* /var/www/html"
+              
+               devopsadmin@10.0.1.5 "sudo cp -r /tmp/* /var/www/html"
             readyTimeout: '600000'
