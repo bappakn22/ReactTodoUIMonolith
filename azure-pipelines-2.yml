@@ -66,7 +66,7 @@ stages:
             commands: |
               scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.4:/tmp
               
-              sudo cp -r /tmp/* /var/www/html/
+              sudo cp -r /tmp/* /var/www/html
             readyTimeout: '20000'
 
         
@@ -79,6 +79,6 @@ stages:
             commands: |
               scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.4:/tmp
               
-              sudo cp -r /tmp/* /var/www/html/
+              sudo cp -r /tmp/* /var/www/html
             readyTimeout: '20000'
               
