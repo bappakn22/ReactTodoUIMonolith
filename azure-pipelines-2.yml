@@ -67,7 +67,7 @@ stages:
             sshEndpoint: 'jumpsvc'
             runOptions: 'commands'
             commands: |
-               devopsadmin@10.0.1.4 "sudo cp -r /tmp/* /var/www/html"
+               ssh devopsadmin@10.0.1.4 "sudo cp -r /tmp/* /var/www/html"
               
-               devopsadmin@10.0.1.5 "sudo cp -r /tmp/* /var/www/html"
+               ssh devopsadmin@10.0.1.5 "sudo cp -r /tmp/* /var/www/html"
             readyTimeout: '600000'
