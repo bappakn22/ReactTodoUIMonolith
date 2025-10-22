@@ -29,10 +29,11 @@ stages:
             workingDir: '$(System.DefaultWorkingDirectory)'
             customCommand: 'run build'
 
-        - task: PublishBuildArtifacts@1
-          displayName: publish artifacts
+        - task: PublishPipelineArtifact@1
+          displayName: publishartifacts
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'droptodo'
-            publishLocation: 'Container'
+            targetPath: '$(System.DefaultWorkingDirectory)/build'
+            artifact: 'todo_build'
+            publishLocation: 'pipeline'
+
         
