@@ -79,9 +79,7 @@ stages:
             commands: |
               scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.4:/tmp
               
-              ssh devopsadmin@10.0.1.4
-              
-              sudo cp -r /tmp/* /var/www/html
+              scp -r $(System.ArtifactsDirectory)/* devopsadmin@10.0.1.5:/tmp
             readyTimeout: '20000'
 
 
