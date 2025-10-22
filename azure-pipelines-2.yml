@@ -56,17 +56,17 @@ stages:
             targetFolder: '/tmp'
             readyTimeout: '20000'
         
-        - task: SSH@0
-          inputs:
-            sshEndpoint: 'jumpsvc'
-            runOptions: 'commands'
-            commands: 'scp /tmp/* devopsadmin@10.0.1.4:/tmp'
-            readyTimeout: '20000'
+        # - task: SSH@0
+        #   inputs:
+        #     sshEndpoint: 'jumpsvc'
+        #     runOptions: 'commands'
+        #     commands: 'scp /tmp/* devopsadmin@10.0.1.4:/tmp'
+        #     readyTimeout: '20000'
 
-        - task: SSH@0
-          inputs:
-            sshEndpoint: 'jumpsvc'
-            runOptions: 'commands'
-            commands: 'scp /tmp/* devopsadmin@10.0.1.5:/tmp'
-            readyTimeout: '20000'
+        # - task: SSH@0
+        #   inputs:
+        #     sshEndpoint: 'jumpsvc'
+        #     runOptions: 'commands'
+        #     commands: 'scp /tmp/* devopsadmin@10.0.1.5:/tmp'
+        #     readyTimeout: '20000'
               
