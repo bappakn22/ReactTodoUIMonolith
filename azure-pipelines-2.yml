@@ -12,21 +12,27 @@ pool:
   
 
 stages:
-  - stage: installnodejs
+  - stage: installnpm
     jobs:
-      - job: nodejsinstall
+      - job: npminstall
         steps:
-           
         - task: Npm@1
+          displayName: npm_install
           inputs:
             command: 'install'
             workingDir: '$(System.DefaultWorkingDirectory)'
 
         - task: Npm@1
+          displayName: npm_build
           inputs:
             command: 'custom'
             workingDir: '$(System.DefaultWorkingDirectory)'
             customCommand: 'run build'
 
-
+        - task: PublishBuildArtifacts@1
+          displayName: publish artifacts
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'droptodo'
+            publishLocation: 'Container'
         
