@@ -1,0 +1,92 @@
+trigger: none
+
+pool:
+  name: Default   # <-- tumhara agent pool
+
+
+stages:
+- stage: SonarQube_Scan
+  jobs:
+  - job: Scan
+    steps:
+    - task: SonarQubePrepare@8
+      inputs:
+        SonarQube: 'sonar-service-con'
+        scannerMode: 'cli'
+        configMode: 'manual'
+        cliProjectKey: 'sonar-test-data'
+        cliProjectName: 'sonar-test-data'
+        cliSources: '.'
+
+    - powershell: |
+        Write-Host "Reset SONARQUBE_SCANNER_PARAMS"
+        Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]{}"
+      displayName: Disable Branch Injection
+
+    - task: SonarQubeAnalyze@8
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
+
+    - task: SonarQubePublish@8
+      inputs:
+        pollingTimeoutSec: '300'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # steps:
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: 'java -version'
+
+# # variables:
+# #   SONAR_PROJECT_KEY: 
+# #   SONAR_PROJECT_NAME: "new-demo-project"
+# #   SONAR_PROJECT_VERSION: "1.0"
+
+# # stages:
+# #   - stage: scanning
+# #     jobs:
+# #       - job: codescanning
+# #         steps:
+# #         - task: SonarQubePrepare@8
+# #           inputs:
+# #             SonarQube: 'sonar_sc'
+# #             scannerMode: 'CLI'
+# #             configMode: 'manual'
+# #             cliProjectKey: 'new-demo-project'
+# #             cliProjectName: 'new-demo-project'
+# #             cliSources: '.'
+            
+
+
+# #         - powershell: |
+# #             Write-Host "Overriding SONARQUBE_SCANNER_PARAMS to disable branch analysis"
+# #             echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]{}"
+# #           displayName: Disable Sonar Branch Injection
+
+# #         - task: SonarQubeAnalyze@8
+# #           displayName: sonar scanner
+
+# #         - task: SonarQubePublish@8
+# #           displayName: publish result
+# #           inputs:
+# #             pollingTimeoutSec: '300'
+
