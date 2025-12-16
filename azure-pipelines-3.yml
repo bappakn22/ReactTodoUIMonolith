@@ -1,0 +1,17 @@
+
+trigger:
+- develop
+
+
+pool: jumpagent
+  #  vmImage: ubuntu-latest
+
+stages:
+  - stage: build_job
+    jobs:
+      - job: buildjob
+        steps:
+         - task: Npm@1
+           inputs:
+             command: 'install'
+             workingDir: '$(System.DefaultWorkingDirectory)'

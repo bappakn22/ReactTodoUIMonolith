@@ -1,0 +1,22 @@
+trigger: none
+
+
+pool:
+  name: Default
+
+
+steps:
+  - task: PowerShell@2
+    displayName: 'Run Sonar Scanner'
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd "$(Build.SourcesDirectory)"
+
+        sonar-scanner `
+          -Dsonar.projectKey=my-sonar-project `
+          -Dsonar.projectName=my-sonar-project `
+          -Dsonar.sources=. `
+          -Dsonar.branch.name=main `
+          -Dsonar.host.url=http://172.24.176.1:9000 `
+          -Dsonar.login=$(SONAR_TOKEN)
